@@ -65,7 +65,6 @@
 	    Route,
 	    { path: '/', component: Main },
 	    React.createElement(Route, { path: 'about', component: About }),
-	    React.createElement(Route, { path: 'examples', component: Examples }),
 	    React.createElement(IndexRoute, { component: Recipe })
 	  )
 	), document.getElementById('app'));
@@ -19783,7 +19782,11 @@
 				'div',
 				{ className: 'Well' },
 				React.createElement(Nav, null),
-				this.props.children,
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					this.props.children
+				),
 				React.createElement('br', null),
 				React.createElement('br', null),
 				React.createElement(Footer, null)

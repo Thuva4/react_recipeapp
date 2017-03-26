@@ -9,8 +9,9 @@ var Main = React.createClass(
 		return(
 			<div className='Well'>
 			<Nav></Nav>
-
+<div className="container">
 			{this.props.children}
+		</div>
 			<br></br>
 			<br></br>
 <Footer></Footer>
