@@ -60,6 +60,18 @@ var Recipe = React.createClass({
                     <RecipeListSpoonacular temp={temp} location={location}/>
                   </div>)
             }
+            else if (temp) {
+              return (
+                  <div className='row'>
+                    <RecipeListSpoonacular temp={temp} location={location}/>
+                  </div>)
+            }
+            else if (temp1) {
+              return (
+                  <div className='row'>
+                    <RecipeListEdamam temp1={temp1} location={location}/>
+                  </div>)
+            }
              else {
                 return (
                     <div className="container" >
