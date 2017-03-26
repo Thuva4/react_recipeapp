@@ -3,6 +3,7 @@ var SearchForm = require('./SearchForm.jsx');
 var RecipeListF2F = require('./RecipeListF2F.jsx');
 var RecipeListEdamam = require('./RecipeListEdamam.jsx');
 var RecipeSearchAPI = require('api/RecipeSearchAPI.jsx');
+var RecipeListSpoonacular = require('./RecipeListSpoonacular.jsx');
 
 var Recipe = React.createClass({
     getInitialState: function() {
@@ -12,8 +13,8 @@ var Recipe = React.createClass({
     handleSearch: function(location) {
         var that = this;
         this.setState({isLoading: true});
-        RecipeSearchAPI.getTemp(location).then(function(temp) {
-            that.setState({location: location, temp: temp, isLoading: false});
+        RecipeSearchAPI.getSpoonacular(location).then(function(temp) {
+            that.setState({temp: temp, isLoading: false});
         }, function(errorMessage) {
             alert(errorMessage);
             that.setState({isLoading: false});
@@ -26,6 +27,8 @@ var Recipe = React.createClass({
         }, function(errorMessage) {
             alert(errorMessage);
         });
+        console.log(this.temp);
+
 
     },
 
@@ -54,22 +57,10 @@ var Recipe = React.createClass({
               return (
                   <div className='row'>
                     <RecipeListEdamam temp1={temp1} location={location}/>
-                    <RecipeListF2F temp={temp} location={location}/>
+                    <RecipeListSpoonacular temp={temp} location={location}/>
                   </div>)
             }
-            else if (temp ) {
-
-                return (
-                  <div className='row'>
-                    <RecipeListF2F temp={temp} location={location}/>
-                  </div>)
-            } else if (temp1) {
-
-                return (
-                  <div className='row'>
-                    <RecipeListEdamam temp1={temp1} location={location}/>
-                  </div>)
-            } else {
+             else {
                 return (
                     <div className="container" >
                         <br></br>
