@@ -27,8 +27,9 @@ var Login = React.createClass({
                                         <div className="checkbox">
                                             <label>
                                                 <input type="checkbox" name="remember" id="remember">
-                                                    Remember login
+
                                                 </input>
+                                                Remember login
                                             </label>
                                             <p className="help-block">(if this is a private computer)</p>
                                         </div>
@@ -63,8 +64,19 @@ var Login = React.createClass({
                                     </li>
                                 </ul>
                                 <p>
-                                    <a href="/new-customer/" className="btn btn-info btn-block">Yes please, register now!</a>
+                                    <a href="#register" className="btn btn-info btn-block">Yes please, register now!</a>
                                 </p>
+
+
+                                <legend text='bold' className='text-center'> Or </legend>
+                                  <a className="btn btn-block btn-social btn-google text-danger">
+                                      <span className="fa fa-google"></span>
+                                      Sign in with Google
+                                  </a>
+
+
+
+
                             </div>
                         </div>
                     </div>

@@ -13,17 +13,18 @@ var SearchForm = React.createClass({
   },
   render: function(){
     return(
+      <div className="container text-center">
+        <div>
       <form onSubmit={this.onFormSubmit}>
-        <div className= "container">
-        <div className="container col-sm-4 col-md-offset-4">
     <label for="exampleInputEmail1">Ingredients</label>
     <input type="text" ref="location" className="form-control" placeholder="chicken,cheese,..."></input>
     <br></br>
     <br></br>
   <button type="submit" className="btn btn-primary center-block">Primary</button>
+    </form>
   </div>
   </div>
-      </form>
+
     )
   }
 });

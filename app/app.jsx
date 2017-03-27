@@ -4,6 +4,7 @@ var Main = require('./components/Main.jsx');
 var Recipe = require('./components/Recipe.jsx');
 var About=require('./components/about.jsx');
 var Login = require('./components/login.jsx');
+var Register = require('./components/Register.jsx');
 var {Route , Router, IndexRoute , hashHistory} = require('react-router');
 
 ReactDOM.render(
@@ -12,6 +13,7 @@ ReactDOM.render(
     <Route path="about" component={About}/>
     <IndexRoute component={Recipe}/>
     <Route path="login" component={Login}/>
+    <Route path="Register" component={Register}/>
   </Route>
 
   </Router>,
