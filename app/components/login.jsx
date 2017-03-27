@@ -26,9 +26,7 @@ var Login = React.createClass({
                                         <div id="loginErrorMsg" className="alert alert-error hide">Wrong username og password</div>
                                         <div className="checkbox">
                                             <label>
-                                                <input type="checkbox" name="remember" id="remember">
-
-                                                </input>
+                                                <input type="checkbox" name="remember" id="remember"></input>
                                                 Remember login
                                             </label>
                                             <p className="help-block">(if this is a private computer)</p>
@@ -48,7 +46,7 @@ var Login = React.createClass({
                                         See interesting recipes
                                     </li>
                                     <li>
-                                        <span classNameName="fa fa-check text-success"></span>Save your favorite recipes</li>
+                                        <span className="fa fa-check text-success"></span>Save your favorite recipes</li>
                                     <li>
                                         <span className="fa fa-check text-success"></span>Submit Recipes</li>
                                     <li>
@@ -58,7 +56,7 @@ var Login = React.createClass({
                                         <span className="fa fa-check text-success"></span>
                                         Search/Find Recipes</li>
                                     <li>
-                                        <a href="/read-more/">
+                                        <a href="#about">
                                             <u>Read more</u>
                                         </a>
                                     </li>
@@ -67,16 +65,13 @@ var Login = React.createClass({
                                     <a href="#register" className="btn btn-info btn-block">Yes please, register now!</a>
                                 </p>
 
-
-                                <legend text='bold' className='text-center'> Or </legend>
-                                  <a className="btn btn-block btn-social btn-google text-danger">
-                                      <span className="fa fa-google"></span>
-                                      Sign in with Google
-                                  </a>
-
-
-
-
+                                <legend text='bold' className='text-center'>
+                                    Or
+                                </legend>
+                                <a className="btn btn-block btn-social btn-google text-danger">
+                                    <span className="fa fa-google"></span>
+                                    Sign in with Google
+                                </a>
                             </div>
                         </div>
                     </div>

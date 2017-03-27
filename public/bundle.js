@@ -25273,20 +25273,27 @@
 	        RecipeSearchAPI.getSpoonacular(location).then(function (temp) {
 	            that.setState({ temp: temp, isLoading: false });
 	        }, function (errorMessage) {
+
 	            alert(errorMessage);
 	        });
 	        RecipeSearchAPI.getEdamam(location).then(function (temp) {
-	            that.setState({
-	                temp1: temp,
-	                isLoading: false });
+	            that.setState({ temp1: temp, isLoading: false });
 	        }, function (errorMessage) {
+
 	            alert(errorMessage);
 	        });
-	        console.log(this.state.isLoading);
+
+	        RecipeSearchAPI.getTemp(location).then(function (temp) {
+	            that.setState({ temp2: temp, isLoading: false });
+	        }, function (errorMessage) {
+
+	            alert(errorMessage);
+	        });
+
 	        if (this.state.isLoading === false) {
-	            return true;
-	        } else {
 	            return false;
+	        } else {
+	            return true;
 	        }
 	    },
 
@@ -25295,6 +25302,7 @@
 	            isLoading = _state.isLoading,
 	            temp = _state.temp,
 	            temp1 = _state.temp1,
+	            temp2 = _state.temp2,
 	            location = _state.location;
 
 	        return React.createElement(
@@ -25324,12 +25332,13 @@
 	                        )
 	                    )
 	                );
-	            } else if (temp && temp1) {
+	            } else if (temp && temp1 && temp2) {
 	                return React.createElement(
 	                    'div',
 	                    { className: 'row' },
 	                    React.createElement(RecipeListEdamam, { temp1: temp1, location: location }),
-	                    React.createElement(RecipeListSpoonacular, { temp: temp, location: location })
+	                    React.createElement(RecipeListSpoonacular, { temp: temp, location: location }),
+	                    React.createElement(RecipeListF2F, { temp2: temp2, location: location })
 	                );
 	            } else if (temp) {
 	                return React.createElement(
@@ -25342,6 +25351,12 @@
 	                    'div',
 	                    { className: 'row' },
 	                    React.createElement(RecipeListEdamam, { temp1: temp1, location: location })
+	                );
+	            } else if (temp2) {
+	                return React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(RecipeListF2F, { temp2: temp2, location: location })
 	                );
 	            } else {
 	                return React.createElement(
@@ -25429,25 +25444,25 @@
 
 	var React = __webpack_require__(151);
 
-	var RecipeListEdamam = React.createClass({
-	  displayName: 'RecipeListEdamam',
+	var RecipeListF2F = React.createClass({
+	  displayName: 'RecipeListF2F',
 
 
 	  render: function render() {
 	    var _props = this.props,
-	        temp = _props.temp,
+	        temp2 = _props.temp2,
 	        location = _props.location;
 
 	    var body = [];
-	    for (var i = 0; i < temp.length; i++) {
-	      var str = temp[i]['title'].substring(0, 30);
+	    for (var i = 0; i < temp2.length; i++) {
+	      var str = temp2[i]['title'].substring(0, 30);
 	      body.push(React.createElement(
 	        'div',
 	        { className: 'col-md-3 portfolio-item', key: i },
 	        React.createElement(
 	          'a',
-	          { href: temp[i]['f2f_url'], target: '_blank', 'data-toggle': 'tooltip', title: temp[i]['title'] },
-	          React.createElement('img', { className: 'img-responsive imageClip', src: temp[i]['image_url'], alt: '' }),
+	          { href: temp2[i]['f2f_url'], target: '_blank', 'data-toggle': 'tooltip', title: temp2[i]['title'] },
+	          React.createElement('img', { className: 'img-responsive imageClip', src: temp2[i]['image_url'], alt: '' }),
 	          React.createElement(
 	            'lable',
 	            { className: 'pagination-centered' },
@@ -25467,7 +25482,7 @@
 	  }
 	});
 
-	module.exports = RecipeListEdamam;
+	module.exports = RecipeListF2F;
 
 /***/ },
 /* 226 */
@@ -25527,7 +25542,7 @@
 
 	var jsonp = __webpack_require__(253);
 
-	var FOOD_RECIPE_URL = 'http://food2fork.com/api/search?key=7622c4df434ff2b070e7e9c8e341d5eb';
+	var FOOD_RECIPE_URL = 'https://community-food2fork.p.mashape.com/search?key=7622c4df434ff2b070e7e9c8e341d5eb';
 	var EDAMAM_RECIPE_URL = 'https://api.edamam.com/search?app_id=1da22480&app_key=e58ee3a57e42f72a602bada4714c7e22';
 	var RECIPE_PUPPY_URL = 'http://www.recipepuppy.com/api/?';
 	var SPOONACULAR_RECIPE_URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?&number=100&fillIngredients=false';
@@ -25536,18 +25551,23 @@
 	  getTemp: function getTemp(location) {
 	    var encodedLocation = encodeURIComponent(location);
 	    var requestUrl = FOOD_RECIPE_URL + '&q=' + encodedLocation;
-
-	    return axios.get(requestUrl, { crossDomain: true, withCredentials: false }).then(function (res) {
+	    var config = {
+	      headers: {
+	        'X-Mashape-Key': 'fpZ8UlmVb3mshoNIQ6L4uQjinY74p1tO2QsjsnFDY6pt7Uzamb',
+	        'Accept': ' application/json' }
+	    };
+	    return axios.get(requestUrl, config).then(function (res) {
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        // console.log(res.data.recipes);
+
 	        return res.data.recipes;
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
 	    });
 	  },
+
 	  getSpoonacular: function getSpoonacular(location) {
 	    var encodedLocation = encodeURIComponent(location);
 	    var requestUrl = SPOONACULAR_RECIPE_URL + '&ingredients=' + encodedLocation;
@@ -25567,6 +25587,7 @@
 	      throw new Error(res.data.message);
 	    });
 	  },
+
 	  getRecipePuppy: function getRecipePuppy(location) {
 	    var encodedLocation = encodeURIComponent(location);
 	    var requestUrl = RECIPE_PUPPY_URL + '&i=' + encodedLocation;
@@ -25581,6 +25602,7 @@
 	      throw new Error(res.data.message);
 	    });
 	  },
+
 	  getEdamam: function getEdamam(location) {
 	    var encodedLocation = encodeURIComponent(location);
 	    var requestUrl = EDAMAM_RECIPE_URL + '&q=' + encodedLocation + '&from=0&to=100';
@@ -27926,7 +27948,7 @@
 	                                React.createElement(
 	                                    "li",
 	                                    null,
-	                                    React.createElement("span", { classNameName: "fa fa-check text-success" }),
+	                                    React.createElement("span", { className: "fa fa-check text-success" }),
 	                                    "Save your favorite recipes"
 	                                ),
 	                                React.createElement(
@@ -27952,7 +27974,7 @@
 	                                    null,
 	                                    React.createElement(
 	                                        "a",
-	                                        { href: "/read-more/" },
+	                                        { href: "#about" },
 	                                        React.createElement(
 	                                            "u",
 	                                            null,
@@ -27973,7 +27995,7 @@
 	                            React.createElement(
 	                                "legend",
 	                                { text: "bold", className: "text-center" },
-	                                " Or "
+	                                "Or"
 	                            ),
 	                            React.createElement(
 	                                "a",
