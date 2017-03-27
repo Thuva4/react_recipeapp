@@ -25235,7 +25235,6 @@
 	        }, function (errorMessage) {
 	            alert(errorMessage);
 	        });
-	        console.log(this.temp);
 	    },
 
 	    render: function render() {
@@ -25278,6 +25277,18 @@
 	                    { className: 'row' },
 	                    React.createElement(RecipeListEdamam, { temp1: temp1, location: location }),
 	                    React.createElement(RecipeListSpoonacular, { temp: temp, location: location })
+	                );
+	            } else if (temp) {
+	                return React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(RecipeListSpoonacular, { temp: temp, location: location })
+	                );
+	            } else if (temp1) {
+	                return React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(RecipeListEdamam, { temp1: temp1, location: location })
 	                );
 	            } else {
 	                return React.createElement(
@@ -25464,7 +25475,7 @@
 	var jsonp = __webpack_require__(249);
 
 	var FOOD_RECIPE_URL = 'http://food2fork.com/api/search?key=7622c4df434ff2b070e7e9c8e341d5eb';
-	var EDAMAM_RECIPE_URL = 'https://api.edamam.com/search?app_id=1da22480&app_key=3da345c8fd1ab493a5de14fdf24224b8';
+	var EDAMAM_RECIPE_URL = 'https://api.edamam.com/search?app_id=1da22480&app_key=e58ee3a57e42f72a602bada4714c7e22';
 	var RECIPE_PUPPY_URL = 'http://www.recipepuppy.com/api/?';
 	var SPOONACULAR_RECIPE_URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?&number=100&fillIngredients=false';
 
@@ -25489,7 +25500,7 @@
 	    var requestUrl = SPOONACULAR_RECIPE_URL + '&ingredients=' + encodedLocation;
 	    var config = {
 	      headers: {
-	        'X-Mashape-Key': '3VG1pWZddXmshD3cURZ8kcm1jkqGp107QBzjsnRmeinpiKVgqt',
+	        'X-Mashape-Key': 'VdMVH2hOJgmshIGLKDslhF8tRLDap1mMA5wjsnoifSVJEGiq2l',
 	        'Accept': ' application/json' }
 	    };
 
@@ -25497,11 +25508,9 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        console.log(res.data);
 	        return res.data;
 	      }
 	    }, function (res) {
-	      console.log(res);
 	      throw new Error(res.data.message);
 	    });
 	  },
@@ -25513,8 +25522,7 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        console.log(res.data);
-	        // return res.data.recipes;
+	        return res.data.recipes;
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
