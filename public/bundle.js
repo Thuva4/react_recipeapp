@@ -27785,23 +27785,9 @@
 	                    "div",
 	                    { className: "modal-header" },
 	                    React.createElement(
-	                        "button",
-	                        { type: "button", className: "close", "data-dismiss": "modal" },
-	                        React.createElement(
-	                            "span",
-	                            { "aria-hidden": "true" },
-	                            "\xD7"
-	                        ),
-	                        React.createElement(
-	                            "span",
-	                            { className: "sr-only" },
-	                            "Close"
-	                        )
-	                    ),
-	                    React.createElement(
 	                        "h4",
 	                        { className: "modal-title", id: "myModalLabel" },
-	                        "Login to site.com"
+	                        "Login to Recipe Guider"
 	                    )
 	                ),
 	                React.createElement(
@@ -27818,7 +27804,7 @@
 	                                { className: "well" },
 	                                React.createElement(
 	                                    "form",
-	                                    { id: "loginForm", method: "POST", action: "/login/" },
+	                                    null,
 	                                    React.createElement(
 	                                        "div",
 	                                        { className: "form-group" },
@@ -27855,7 +27841,7 @@
 	                                            React.createElement(
 	                                                "input",
 	                                                { type: "checkbox", name: "remember", id: "remember" },
-	                                                " Remember login"
+	                                                "Remember login"
 	                                            )
 	                                        ),
 	                                        React.createElement(
@@ -27871,7 +27857,7 @@
 	                                    ),
 	                                    React.createElement(
 	                                        "a",
-	                                        { href: "/forgot/", className: "btn btn-default btn-block" },
+	                                        { href: "#", className: "btn btn-default btn-block" },
 	                                        "Help to login"
 	                                    )
 	                                )
@@ -27883,7 +27869,7 @@
 	                            React.createElement(
 	                                "p",
 	                                { className: "lead" },
-	                                "Register now for ",
+	                                "Register now for",
 	                                React.createElement(
 	                                    "span",
 	                                    { className: "text-success" },
@@ -27897,7 +27883,7 @@
 	                                    "li",
 	                                    null,
 	                                    React.createElement("span", { className: "fa fa-check text-success" }),
-	                                    " See interesting recipes "
+	                                    "See interesting recipes"
 	                                ),
 	                                React.createElement(
 	                                    "li",
@@ -27915,13 +27901,13 @@
 	                                    "li",
 	                                    null,
 	                                    React.createElement("span", { className: "fa fa-check text-success" }),
-	                                    " Fast checkout"
+	                                    "Fast checkout"
 	                                ),
 	                                React.createElement(
 	                                    "li",
 	                                    null,
 	                                    React.createElement("span", { className: "fa fa-check text-success" }),
-	                                    " Search/Find Recipes"
+	                                    "Search/Find Recipes"
 	                                ),
 	                                React.createElement(
 	                                    "li",
