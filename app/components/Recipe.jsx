@@ -27,7 +27,7 @@ var Recipe = React.createClass({
         }, function(errorMessage) {
             alert(errorMessage);
         });
-        console.log(this.temp);
+
 
 
     },
