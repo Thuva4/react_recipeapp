@@ -16,19 +16,25 @@ var Recipe = React.createClass({
         RecipeSearchAPI.getSpoonacular(location).then(function(temp) {
             that.setState({temp: temp, isLoading: false});
         }, function(errorMessage) {
-            alert(errorMessage);
-            that.setState({isLoading: false});
-        });
 
+            alert(errorMessage);
+
+        });
         RecipeSearchAPI.getEdamam(location).then(function(temp) {
           that.setState({
              temp1: temp,
              isLoading: false});
         }, function(errorMessage) {
+
             alert(errorMessage);
         });
 
-
+        if(this.state.isLoading===false){
+          return false;
+        }
+        else{
+          return true;
+        }
 
     },
 
