@@ -15,7 +15,6 @@ var Nav= React.createClass({
       <ul className="nav navbar-nav navbar-right">
       <li><a href="#about">Thuvarakan</a></li>
       <li><a href="https://www.facebook.com/Semicolon04" target="_blank">Semicolon</a></li>
-      <li>  <IndexLink to="/login" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Login</IndexLink></li>
     </ul>
     </div>
   </nav>

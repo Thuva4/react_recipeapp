@@ -11,7 +11,6 @@ ReactDOM.render(
   <Route path="/" component={Main}>
     <Route path="about" component={About}/>
     <IndexRoute component={Recipe}/>
-    <Route path="login" component={Login}/>
   </Route>
 
   </Router>,
