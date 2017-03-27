@@ -8,7 +8,6 @@ var RecipeListSpoonacular = React.createClass(
     render: function(){
 
       var {temp,location} = this.props;
-       console.log(temp);
       var body = [];
       for (var i = 0; i < temp.length; i++) {
         var str = temp[i]['title'].substring(0, 30);

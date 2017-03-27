@@ -51,6 +51,7 @@
 	var Main = __webpack_require__(159);
 	var Recipe = __webpack_require__(219);
 	var About = __webpack_require__(254);
+	var Login = __webpack_require__(255);
 
 	var _require = __webpack_require__(161),
 	    Route = _require.Route,
@@ -65,7 +66,8 @@
 	    Route,
 	    { path: '/', component: Main },
 	    React.createElement(Route, { path: 'about', component: About }),
-	    React.createElement(IndexRoute, { component: Recipe })
+	    React.createElement(IndexRoute, { component: Recipe }),
+	    React.createElement(Route, { path: 'login', component: Login })
 	  )
 	), document.getElementById('app'));
 
@@ -19870,6 +19872,16 @@
 	              { href: 'https://www.facebook.com/Semicolon04', target: '_blank' },
 	              'Semicolon'
 	            )
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            '  ',
+	            React.createElement(
+	              IndexLink,
+	              { to: '/login', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	              'Login'
+	            )
 	          )
 	        )
 	      )
@@ -27702,7 +27714,6 @@
 	        temp = _props.temp,
 	        location = _props.location;
 
-	    console.log(temp);
 	    var body = [];
 	    for (var i = 0; i < temp.length; i++) {
 	      var str = temp[i]['title'].substring(0, 30);
@@ -27751,6 +27762,199 @@
 	});
 
 	module.exports = About;
+
+/***/ },
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(147);
+
+	var Login = React.createClass({
+	    displayName: "Login",
+
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            { id: "login-overlay", className: "modal-dialog" },
+	            React.createElement(
+	                "div",
+	                { className: "modal-content" },
+	                React.createElement(
+	                    "div",
+	                    { className: "modal-header" },
+	                    React.createElement(
+	                        "button",
+	                        { type: "button", className: "close", "data-dismiss": "modal" },
+	                        React.createElement(
+	                            "span",
+	                            { "aria-hidden": "true" },
+	                            "\xD7"
+	                        ),
+	                        React.createElement(
+	                            "span",
+	                            { className: "sr-only" },
+	                            "Close"
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "h4",
+	                        { className: "modal-title", id: "myModalLabel" },
+	                        "Login to site.com"
+	                    )
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "modal-body" },
+	                    React.createElement(
+	                        "div",
+	                        { className: "row" },
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-xs-6" },
+	                            React.createElement(
+	                                "div",
+	                                { className: "well" },
+	                                React.createElement(
+	                                    "form",
+	                                    { id: "loginForm", method: "POST", action: "/login/" },
+	                                    React.createElement(
+	                                        "div",
+	                                        { className: "form-group" },
+	                                        React.createElement(
+	                                            "label",
+	                                            { "for": "username", className: "control-label" },
+	                                            "Username"
+	                                        ),
+	                                        React.createElement("input", { type: "text", className: "form-control", id: "username", name: "username", title: "Please enter you username", placeholder: "example@gmail.com" }),
+	                                        React.createElement("span", { className: "help-block" })
+	                                    ),
+	                                    React.createElement(
+	                                        "div",
+	                                        { className: "form-group" },
+	                                        React.createElement(
+	                                            "label",
+	                                            { "for": "password", className: "control-label" },
+	                                            "Password"
+	                                        ),
+	                                        React.createElement("input", { type: "password", className: "form-control", id: "password", name: "password", title: "Please enter your password" }),
+	                                        React.createElement("span", { className: "help-block" })
+	                                    ),
+	                                    React.createElement(
+	                                        "div",
+	                                        { id: "loginErrorMsg", className: "alert alert-error hide" },
+	                                        "Wrong username og password"
+	                                    ),
+	                                    React.createElement(
+	                                        "div",
+	                                        { className: "checkbox" },
+	                                        React.createElement(
+	                                            "label",
+	                                            null,
+	                                            React.createElement(
+	                                                "input",
+	                                                { type: "checkbox", name: "remember", id: "remember" },
+	                                                " Remember login"
+	                                            )
+	                                        ),
+	                                        React.createElement(
+	                                            "p",
+	                                            { className: "help-block" },
+	                                            "(if this is a private computer)"
+	                                        )
+	                                    ),
+	                                    React.createElement(
+	                                        "button",
+	                                        { type: "submit", className: "btn btn-success btn-block" },
+	                                        "Login"
+	                                    ),
+	                                    React.createElement(
+	                                        "a",
+	                                        { href: "/forgot/", className: "btn btn-default btn-block" },
+	                                        "Help to login"
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-xs-6" },
+	                            React.createElement(
+	                                "p",
+	                                { className: "lead" },
+	                                "Register now for ",
+	                                React.createElement(
+	                                    "span",
+	                                    { className: "text-success" },
+	                                    "FREE"
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "ul",
+	                                { className: "list-unstyled" },
+	                                React.createElement(
+	                                    "li",
+	                                    null,
+	                                    React.createElement("span", { className: "fa fa-check text-success" }),
+	                                    " See interesting recipes "
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    null,
+	                                    React.createElement("span", { classNameName: "fa fa-check text-success" }),
+	                                    "Save your favorite recipes"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    null,
+	                                    React.createElement("span", { className: "fa fa-check text-success" }),
+	                                    "Submit Recipes"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    null,
+	                                    React.createElement("span", { className: "fa fa-check text-success" }),
+	                                    " Fast checkout"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    null,
+	                                    React.createElement("span", { className: "fa fa-check text-success" }),
+	                                    " Search/Find Recipes"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    null,
+	                                    React.createElement(
+	                                        "a",
+	                                        { href: "/read-more/" },
+	                                        React.createElement(
+	                                            "u",
+	                                            null,
+	                                            "Read more"
+	                                        )
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "p",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { href: "/new-customer/", className: "btn btn-info btn-block" },
+	                                    "Yes please, register now!"
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Login;
 
 /***/ }
 /******/ ]);
