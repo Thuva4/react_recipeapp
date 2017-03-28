@@ -27782,7 +27782,7 @@
 	      var str = temp[i]['title'].substring(0, 30);
 	      body.push(React.createElement(
 	        'div',
-	        { className: 'col-md-3 portfolio-item', key: i },
+	        { className: 'col-md-3 portfolio-item', key: i, title: temp[i]['title'] },
 	        React.createElement('img', { className: 'img-responsive imageClip', src: temp[i]['image'], alt: '' }),
 	        React.createElement(
 	          'lable',
@@ -27836,6 +27836,17 @@
 
 	var Login = React.createClass({
 	    displayName: "Login",
+	    componentWillMount: function componentWillMount() {
+	        var script = document.createElement("script");
+
+	        script.src = "https://apis.google.com/js/platform.js?onload=renderButton";
+
+	        script.async = true;
+	        script.defer = true;
+
+	        document.body.appendChild(script);
+	    },
+
 
 	    render: function render() {
 	        return React.createElement(
@@ -27998,10 +28009,14 @@
 	                                "Or"
 	                            ),
 	                            React.createElement(
-	                                "a",
-	                                { className: "btn btn-block btn-social btn-google text-danger" },
-	                                React.createElement("span", { className: "fa fa-google" }),
-	                                "Sign in with Google"
+	                                "div",
+	                                { className: "text-center" },
+	                                React.createElement("div", { className: "col-xs-1" }),
+	                                React.createElement(
+	                                    "div",
+	                                    { className: "col-xs-3" },
+	                                    React.createElement("div", { className: "g-signin2", "data-onsuccess": "onSignIn", "data-longtitle": "true" })
+	                                )
 	                            )
 	                        )
 	                    )
@@ -28067,7 +28082,7 @@
 	                                    React.createElement(
 	                                        "div",
 	                                        { className: "col-xs-8" },
-	                                        React.createElement("input", { type: "text", id: "username", name: "username", placeholder: "Username can contain any letters or numbers, without spaces", className: "form-control" }),
+	                                        React.createElement("input", { type: "text", id: "username", name: "username", title: "Username can contain any letters or numbers, without spaces", className: "form-control" }),
 	                                        React.createElement("br", null)
 	                                    )
 	                                ),
@@ -28086,7 +28101,7 @@
 	                                    React.createElement(
 	                                        "div",
 	                                        { className: "col-xs-8" },
-	                                        React.createElement("input", { type: "text", id: "email", name: "email", placeholder: "Please provide your E-mail", className: "form-control" }),
+	                                        React.createElement("input", { type: "text", id: "email", name: "email", title: "Please provide your E-mail", className: "form-control" }),
 	                                        React.createElement("br", null)
 	                                    )
 	                                ),
@@ -28105,7 +28120,7 @@
 	                                    React.createElement(
 	                                        "div",
 	                                        { className: "col-xs-8" },
-	                                        React.createElement("input", { type: "password", id: "password", name: "password", placeholder: "Enter Your Password", className: "form-control" }),
+	                                        React.createElement("input", { type: "password", id: "password", name: "password", title: "Enter Your Password", className: "form-control" }),
 	                                        React.createElement("br", null)
 	                                    )
 	                                ),
@@ -28124,7 +28139,7 @@
 	                                    React.createElement(
 	                                        "div",
 	                                        { className: "col-xs-8" },
-	                                        React.createElement("input", { type: "password", id: "password_confirm", name: "password_confirm", placeholder: "Confirm your password", className: "form-control" }),
+	                                        React.createElement("input", { type: "password", id: "password_confirm", name: "password_confirm", title: "Confirm your password", className: "form-control" }),
 	                                        React.createElement("br", null)
 	                                    )
 	                                ),

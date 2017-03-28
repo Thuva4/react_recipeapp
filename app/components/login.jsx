@@ -1,6 +1,19 @@
 var React = require('react');
 
 var Login = React.createClass({
+  componentWillMount() {
+       const script = document.createElement("script");
+
+       script.src = "https://apis.google.com/js/platform.js?onload=renderButton";
+
+       script.async = true;
+       script.defer = true;
+
+       document.body.appendChild(script);
+   },
+
+
+
     render: function() {
         return (
             <div id="login-overlay" className="modal-dialog">
@@ -68,10 +81,13 @@ var Login = React.createClass({
                                 <legend text='bold' className='text-center'>
                                     Or
                                 </legend>
-                                <a className="btn btn-block btn-social btn-google text-danger">
-                                    <span className="fa fa-google"></span>
-                                    Sign in with Google
-                                </a>
+                                <div className="text-center">
+                                <div className="col-xs-1">
+                                </div>
+                                <div className="col-xs-3">
+                                <div className="g-signin2" data-onsuccess="onSignIn"  data-longtitle="true" ></div>
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>
