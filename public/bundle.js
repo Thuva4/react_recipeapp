@@ -85,9 +85,9 @@
 	var React = __webpack_require__(151);
 	var Main = __webpack_require__(163);
 	var Recipe = __webpack_require__(223);
-	var About = __webpack_require__(258);
-	var Login = __webpack_require__(259);
-	var Register = __webpack_require__(260);
+	var About = __webpack_require__(259);
+	var Login = __webpack_require__(260);
+	var Register = __webpack_require__(261);
 
 	var _require = __webpack_require__(165),
 	    Route = _require.Route,
@@ -103,7 +103,6 @@
 	    { path: '/', component: Main },
 	    React.createElement(Route, { path: 'about', component: About }),
 	    React.createElement(IndexRoute, { component: Recipe }),
-	    React.createElement(Route, { path: 'login', component: Login }),
 	    React.createElement(Route, { path: 'Register', component: Register })
 	  )
 	), document.getElementById('app'));
@@ -19898,7 +19897,7 @@
 	            React.createElement(
 	              'a',
 	              { href: '#about' },
-	              'Thuvarakan'
+	              ' Thuvarakan '
 	            )
 	          ),
 	          React.createElement(
@@ -19908,16 +19907,6 @@
 	              'a',
 	              { href: 'https://www.facebook.com/Semicolon04', target: '_blank' },
 	              'Semicolon'
-	            )
-	          ),
-	          React.createElement(
-	            'li',
-	            null,
-	            '  ',
-	            React.createElement(
-	              IndexLink,
-	              { to: '/login', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
-	              'Login'
 	            )
 	          )
 	        )
@@ -25259,6 +25248,7 @@
 	var RecipeListEdamam = __webpack_require__(226);
 	var RecipeSearchAPI = __webpack_require__(227);
 	var RecipeListSpoonacular = __webpack_require__(257);
+	var RecipeYummly = __webpack_require__(258);
 
 	var Recipe = React.createClass({
 	    displayName: 'Recipe',
@@ -25290,6 +25280,12 @@
 	            alert(errorMessage);
 	        });
 
+	        RecipeSearchAPI.getYummly(location).then(function (temp) {
+	            that.setState({ temp3: temp, isLoading: false });
+	        }, function (errorMessage) {
+	            console.log(errorMessage);
+	        });
+
 	        if (this.state.isLoading === false) {
 	            return false;
 	        } else {
@@ -25303,6 +25299,7 @@
 	            temp = _state.temp,
 	            temp1 = _state.temp1,
 	            temp2 = _state.temp2,
+	            temp3 = _state.temp3,
 	            location = _state.location;
 
 	        return React.createElement(
@@ -25332,13 +25329,14 @@
 	                        )
 	                    )
 	                );
-	            } else if (temp && temp1 && temp2) {
+	            } else if (temp && temp1 && temp2 && temp3) {
 	                return React.createElement(
 	                    'div',
 	                    { className: 'row' },
 	                    React.createElement(RecipeListEdamam, { temp1: temp1, location: location }),
 	                    React.createElement(RecipeListSpoonacular, { temp: temp, location: location }),
-	                    React.createElement(RecipeListF2F, { temp2: temp2, location: location })
+	                    React.createElement(RecipeListF2F, { temp2: temp2, location: location }),
+	                    React.createElement(RecipeYummly, { temp3: temp3, location: location })
 	                );
 	            } else if (temp) {
 	                return React.createElement(
@@ -25458,7 +25456,7 @@
 	      var str = temp2[i]['title'].substring(0, 30);
 	      body.push(React.createElement(
 	        'div',
-	        { className: 'col-md-3 portfolio-item', key: i },
+	        { className: 'col-md-3 portfolio-item hvr-grow', key: i },
 	        React.createElement(
 	          'a',
 	          { href: temp2[i]['f2f_url'], target: '_blank', 'data-toggle': 'tooltip', title: temp2[i]['title'] },
@@ -25468,6 +25466,11 @@
 	            { className: 'pagination-centered' },
 	            str
 	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          null,
+	          React.createElement('br', null)
 	        )
 	      ));
 	    }
@@ -25493,41 +25496,45 @@
 	var React = __webpack_require__(151);
 
 	var RecipeListEdamam = React.createClass({
-	  displayName: 'RecipeListEdamam',
+	    displayName: 'RecipeListEdamam',
 
 
-	  render: function render() {
-	    var _props = this.props,
-	        temp1 = _props.temp1,
-	        location = _props.location;
+	    render: function render() {
+	        var _props = this.props,
+	            temp1 = _props.temp1,
+	            location = _props.location;
 
-	    var body = [];
-	    for (var i = 0; i < temp1.length; i++) {
-	      var str = temp1[i]['recipe']['label'].substring(0, 30);
-	      body.push(React.createElement(
-	        'div',
-	        { className: 'col-md-3 portfolio-item', key: i },
-	        React.createElement(
-	          'a',
-	          { href: temp1[i]['recipe']['url'], target: '_blank', 'data-toggle': 'tooltip', title: temp1[i]['recipe']['label'] },
-	          React.createElement('img', { className: 'img-responsive imageClip', src: temp1[i]['recipe']['image'], alt: '' }),
-	          React.createElement(
-	            'lable',
-	            { className: 'pagination-centered' },
-	            str
-	          )
-	        )
-	      ));
+	        var body = [];
+	        for (var i = 0; i < temp1.length; i++) {
+	            var str = temp1[i]['recipe']['label'].substring(0, 30);
+	            body.push(React.createElement(
+	                'div',
+	                { className: 'col-md-3 portfolio-item hvr-grow', key: i },
+	                React.createElement(
+	                    'a',
+	                    { href: temp1[i]['recipe']['url'], target: '_blank', 'data-toggle': 'tooltip', title: temp1[i]['recipe']['label'] },
+	                    React.createElement('img', { className: 'img-responsive imageClip', src: temp1[i]['recipe']['image'], alt: '' }),
+	                    React.createElement(
+	                        'lable',
+	                        { className: 'pagination-centered' },
+	                        str
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    null,
+	                    React.createElement('br', null),
+	                    React.createElement('br', null)
+	                )
+	            ));
+	        }
+
+	        return React.createElement(
+	            'div',
+	            { className: 'row' },
+	            body
+	        );
 	    }
-
-	    return React.createElement(
-	      'div',
-	      { className: 'row' },
-	      ' ',
-	      body,
-	      ' '
-	    );
-	  }
 	});
 
 	module.exports = RecipeListEdamam;
@@ -25546,6 +25553,7 @@
 	var EDAMAM_RECIPE_URL = 'https://api.edamam.com/search?app_id=1da22480&app_key=e58ee3a57e42f72a602bada4714c7e22';
 	var RECIPE_PUPPY_URL = 'http://www.recipepuppy.com/api/?';
 	var SPOONACULAR_RECIPE_URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?&number=100&fillIngredients=false';
+	var YUMMLY_RECIPE_URL = 'http://api.yummly.com/v1/api/recipes?';
 
 	module.exports = {
 	  getTemp: function getTemp(location) {
@@ -25560,7 +25568,6 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-
 	        return res.data.recipes;
 	      }
 	    }, function (res) {
@@ -25608,12 +25615,29 @@
 	    var requestUrl = EDAMAM_RECIPE_URL + '&q=' + encodedLocation + '&from=0&to=100';
 
 	    return axios.get(requestUrl, { crossDomain: true, withCredentials: false }).then(function (res) {
-	      // console.log(res.data.hits);
 	      return res.data.hits;
 	    }, function (res) {
 	      throw new Error(res.data.message);
 	    });
+	  },
+
+	  getYummly: function getYummly(location) {
+	    var encodedLocation = encodeURIComponent(location);
+	    var requestUrl = YUMMLY_RECIPE_URL + '&allowedIngredient[]=' + encodedLocation + '&maxResult=200';
+	    var config = {
+	      headers: {
+	        'X-Yummly-App-ID': '8931ef54',
+	        'X-Yummly-App-Key': '1b4c9c55cd792320809aabc9f93ab586'
+	      }
+	    };
+
+	    return axios.get(requestUrl, config).then(function (res) {
+	      return res.data.matches;
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
 	  }
+
 	};
 
 /***/ },
@@ -27782,12 +27806,17 @@
 	      var str = temp[i]['title'].substring(0, 30);
 	      body.push(React.createElement(
 	        'div',
-	        { className: 'col-md-3 portfolio-item', key: i, title: temp[i]['title'] },
+	        { className: 'col-md-3 portfolio-item hvr-grow', key: i, title: temp[i]['title'] },
 	        React.createElement('img', { className: 'img-responsive imageClip', src: temp[i]['image'], alt: '' }),
 	        React.createElement(
 	          'lable',
 	          { className: 'pagination-centered' },
 	          str
+	        ),
+	        React.createElement(
+	          'div',
+	          null,
+	          React.createElement('br', null)
 	        )
 	      ));
 	    }
@@ -27812,6 +27841,57 @@
 
 	var React = __webpack_require__(151);
 
+	var RecipeYummly = React.createClass({
+	    displayName: 'RecipeYummly',
+
+
+	    render: function render() {
+	        var _props = this.props,
+	            temp3 = _props.temp3,
+	            location = _props.location;
+
+	        var body = [];
+	        for (var i = 0; i < 100; i++) {
+	            var str = temp3[i]['recipeName'].substring(0, 30);
+	            body.push(React.createElement(
+	                'div',
+	                { className: 'col-md-3 portfolio-item hvr-grow', key: i },
+	                React.createElement(
+	                    'a',
+	                    { href: temp3[i]['imageUrlsBySize']['90'], target: '_blank', 'data-toggle': 'tooltip', title: temp3[i]['recipeName'] },
+	                    React.createElement('img', { className: 'img-responsive imageClip', src: temp3[i]['imageUrlsBySize']['90'], alt: '' }),
+	                    React.createElement(
+	                        'lable',
+	                        { className: 'pagination-centered' },
+	                        str
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    null,
+	                    React.createElement('br', null)
+	                )
+	            ));
+	        }
+
+	        return React.createElement(
+	            'div',
+	            { className: 'row' },
+	            body
+	        );
+	    }
+	});
+
+	module.exports = RecipeYummly;
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(151);
+
 	var About = React.createClass({
 	  displayName: 'About',
 
@@ -27827,7 +27907,7 @@
 	module.exports = About;
 
 /***/ },
-/* 259 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28029,7 +28109,7 @@
 	module.exports = Login;
 
 /***/ },
-/* 260 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

@@ -1,20 +1,19 @@
 var React = require('react');
 
-var RecipeListEdamam = React.createClass({
+var RecipeYummly = React.createClass({
 
     render: function() {
-        var {temp1, location} = this.props;
+        var {temp3, location} = this.props;
         var body = [];
-        for (var i = 0; i < temp1.length; i++) {
-            var str = temp1[i]['recipe']['label'].substring(0, 30);
+        for (var i = 0; i < 100; i++) {
+            var str = temp3[i]['recipeName'].substring(0, 30);
             body.push(
                 <div className="col-md-3 portfolio-item hvr-grow" key={i}>
-                    <a href={temp1[i]['recipe']['url']} target="_blank" data-toggle="tooltip" title={temp1[i]['recipe']['label']}>
-                        <img className="img-responsive imageClip" src={temp1[i]['recipe']['image']} alt=""></img>
+                    <a href={temp3[i]['imageUrlsBySize']['90']} target="_blank" data-toggle="tooltip" title={temp3[i]['recipeName']}>
+                        <img className="img-responsive imageClip" src={temp3[i]['imageUrlsBySize']['90']} alt=""></img>
                         <lable className="pagination-centered">{str}</lable>
                     </a>
                     <div>
-                      <br></br>
                       <br></br>
                     </div>
 
@@ -32,4 +31,4 @@ var RecipeListEdamam = React.createClass({
     }
 });
 
-module.exports = RecipeListEdamam;
+module.exports = RecipeYummly;

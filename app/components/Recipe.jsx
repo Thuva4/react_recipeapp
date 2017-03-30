@@ -4,6 +4,7 @@ var RecipeListF2F = require('./RecipeListF2F.jsx');
 var RecipeListEdamam = require('./RecipeListEdamam.jsx');
 var RecipeSearchAPI = require('api/RecipeSearchAPI.jsx');
 var RecipeListSpoonacular = require('./RecipeListSpoonacular.jsx');
+var RecipeYummly = require('./RecipeYummly.jsx');
 
 var Recipe = React.createClass({
     getInitialState: function() {
@@ -36,6 +37,12 @@ var Recipe = React.createClass({
 
         });
 
+      RecipeSearchAPI.getYummly(location).then(function(temp){
+        that.setState({temp3: temp, isLoading: false});
+      },function(errorMessage){
+        console.log(errorMessage);
+      });
+
         if (this.state.isLoading === false) {
             return false;
         } else {
@@ -45,7 +52,7 @@ var Recipe = React.createClass({
     },
 
     render: function() {
-        var {isLoading, temp, temp1,temp2, location} = this.state;
+        var {isLoading, temp, temp1,temp2,temp3, location} = this.state;
         return (
             <div>
                 <SearchForm onSearch={this.handleSearch}/>
@@ -65,12 +72,13 @@ var Recipe = React.createClass({
                         </div>
                     </div>
                 )
-            } else if (temp && temp1 && temp2) {
+            } else if (temp && temp1 && temp2 && temp3) {
                 return (
                     <div className='row'>
                         <RecipeListEdamam temp1={temp1} location={location}/>
                         <RecipeListSpoonacular temp={temp} location={location}/>
                         <RecipeListF2F temp2={temp2} location={location}/>
+                        <RecipeYummly temp3={temp3} location={location}/>
                     </div>
                 )
             } else if (temp) {
@@ -91,7 +99,9 @@ var Recipe = React.createClass({
                           <RecipeListF2F temp2={temp2} location={location}/>
                     </div>
                 )
-            }  else {
+            }
+
+             else {
                 return (
                     <div className="container">
                         <br></br>
